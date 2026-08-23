@@ -1,4 +1,4 @@
-name: "Master Build, Test & Deploy"
+name: "Master Build & Test"
 
 on:
   workflow_dispatch:
@@ -11,9 +11,6 @@ permissions:
 
 jobs:
   main:
-    permissions:
-      contents: write
-      pages: write
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -47,9 +44,6 @@ jobs:
         if: success()
         run: npx grunt prod --msg=""
 
-      - name: Generate sitemap
-        run: npx grunt exec:sitemap
-
       - name: Setup Chrome
         id: setup-chrome
         if: success()
@@ -64,15 +58,3 @@ jobs:
           sudo apt-get install xvfb
           xvfb-run --server-args="-screen 0 1200x800x24" npx grunt testui
 
-      - name: Prepare for GitHub Pages
-        if: success() && matrix.node-version == 24
-        run: npx grunt copy:ghPages
-
-      - name: Deploy to GitHub Pages
-        if: success() && github.ref == 'refs/heads/master' && matrix.node-version == 24
-        uses: crazy-max/ghaction-github-pages@1d6ee9b181a81033a16bd707a1401afa978daab4 # v5.0.0
-        with:
-          target_branch: gh-pages
-          build_dir: ./build/prod
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
