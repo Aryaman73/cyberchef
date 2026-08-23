@@ -6,6 +6,13 @@
 [![Gitter](https://badges.gitter.im/gchq/CyberChef.svg)](https://gitter.im/gchq/CyberChef?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 
+> **This is a personal fork.** It is deployed to <https://aryamans.me/cyberchef> from
+> the `master` branch by [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml),
+> which runs `grunt prod` and publishes `build/prod/` to GitHub Pages. The build uses
+> relative asset paths, so it works unchanged from a sub-path.
+>
+> For the official, upstream CyberChef, see <https://gchq.github.io/CyberChef>.
+
 #### *The Cyber Swiss Army Knife*
 
 CyberChef is a simple, intuitive web app for carrying out all manner of "cyber" operations within a web browser. These operations include simple encoding like XOR and Base64, more complex encryption like AES, DES and Blowfish, creating binary and hexdumps, compression and decompression of data, calculating hashes and checksums, IPv6 and X.509 parsing, changing character encodings, and much more.
