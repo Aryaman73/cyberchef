@@ -62,7 +62,7 @@ async function main() {
     const features = [];
 
     const commits = await (
-        await fetch(`https://api.github.com/repos/gchq/cyberchef/commits`)
+        await fetch(`https://api.github.com/repos/Aryaman73/cyberchef/commits`)
     ).json();
     let foundLast = false;
     for (const commit of commits) {
@@ -152,11 +152,11 @@ async function main() {
 
         if (feature.id.length > 10) {
             commitIDs.push(
-                `[${id}]: https://github.com/gchq/CyberChef/commit/${feature.id}`,
+                `[${id}]: https://github.com/Aryaman73/cyberchef/commit/${feature.id}`,
             );
         } else {
             prIDs.push(
-                `[#${feature.id}]: https://github.com/gchq/CyberChef/pull/${feature.id}`,
+                `[#${feature.id}]: https://github.com/Aryaman73/cyberchef/pull/${feature.id}`,
             );
         }
     });
@@ -168,7 +168,7 @@ async function main() {
     );
 
     // Tag
-    const newTag = `[${newVersion[0]}.${newVersion[1]}.${newVersion[2]}]: https://github.com/gchq/CyberChef/releases/tag/v${newVersion[0]}.${newVersion[1]}.${newVersion[2]}\n`;
+    const newTag = `[${newVersion[0]}.${newVersion[1]}.${newVersion[2]}]: https://github.com/Aryaman73/cyberchef/releases/tag/v${newVersion[0]}.${newVersion[1]}.${newVersion[2]}\n`;
     changelogData = changelogData.replace(
         /\n\n(\[\d+\.\d+\.\d+\]: https)/,
         "\n\n" + newTag + "$1",
@@ -185,7 +185,7 @@ async function main() {
     // Commit IDs
     commitIDs.forEach((commitID) => {
         changelogData = changelogData.replace(
-            /(\n\[[^\].]+\]: https:\/\/github.com\/gchq\/CyberChef\/commit\/[^\n]+\n)\n/,
+            /(\n\[[^\].]+\]: https:\/\/github.com\/Aryaman73\/cyberchef\/commit\/[^\n]+\n)\n/,
             "$1" + commitID + "\n\n",
         );
     });
@@ -193,7 +193,7 @@ async function main() {
     // PR IDs
     prIDs.forEach((prID) => {
         changelogData = changelogData.replace(
-            /(\n\[#[^\]]+\]: https:\/\/github.com\/gchq\/CyberChef\/(?:pull|issues)\/[^\n]+\n)\n*$/,
+            /(\n\[#[^\]]+\]: https:\/\/github.com\/Aryaman73\/cyberchef\/(?:pull|issues)\/[^\n]+\n)\n*$/,
             "$1" + prID + "\n\n",
         );
     });

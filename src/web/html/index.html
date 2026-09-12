@@ -34,12 +34,16 @@
         <script type="application/javascript">
             "use strict";
 
-            // Load theme before the preloader is shown
+            // Load theme before the preloader is shown. Falls back to the same
+            // default as defaultOptions so the first paint is not a flash of the
+            // light theme before the app boots and applies the real setting.
+            var initialTheme = "dark";
             try {
-                document.querySelector(":root").className = (JSON.parse(localStorage.getItem("options")) || {}).theme;
+                initialTheme = (JSON.parse(localStorage.getItem("options")) || {}).theme || initialTheme;
             } catch (err) {
                 // LocalStorage access is denied by security settings
             }
+            document.querySelector(":root").className = initialTheme;
 
             // Define loading messages
             var loadingMsgs = [
@@ -127,7 +131,7 @@
                     "The following browser versions are supported:" +
                     "<ul><li>Google Chrome 50+</li><li>Mozilla Firefox 38+</li></ul>" +
                     "Your user agent is:<br>" + escapeHtml(navigator.userAgent) + "<br><br>" +
-                    "If your browser is supported, please <a href='https://github.com/gchq/CyberChef/issues/new/choose'>" +
+                    "If your browser is supported, please <a href='https://github.com/Aryaman73/cyberchef/issues/new/choose'>" +
                     "raise an issue</a> including the following details:<br><br>" +
                     "<pre>" + escapeHtml(msg) + "</pre>";
             };
@@ -666,7 +670,7 @@
                                 <br>
                                 <pre id="report-bug-info"></pre>
                                 <br>
-                                <a class="btn btn-primary" href="https://github.com/gchq/CyberChef/issues/new/choose" role="button">Raise issue on GitHub</a>
+                                <a class="btn btn-primary" href="https://github.com/Aryaman73/cyberchef/issues/new/choose" role="button">Raise issue on GitHub</a>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="about" style="padding: 20px;">
                                 <h5><strong>What</strong></h5>
@@ -701,7 +705,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
-                    <a href="https://github.com/gchq/CyberChef">
+                    <a href="https://github.com/Aryaman73/cyberchef">
                         <img aria-hidden="true" style="position: absolute; top: 0; right: 0; border: 0;" src="<%- require('../static/images/fork_me.png') %>" alt="Fork me on GitHub">
                     </a>
                 </div>
@@ -871,7 +875,7 @@
                         <h6>CyberChef <%= htmlWebpackPlugin.options.version %></h6>
                         <ul>
                             <li>Build time: <%= htmlWebpackPlugin.options.compileTime %></li>
-                            <li>The changelog for this version can be viewed <a href="https://github.com/gchq/CyberChef/blob/v<%= htmlWebpackPlugin.options.latestReleaseVersion %>/CHANGELOG.md">here</a></li>
+                            <li>The changelog for this version can be viewed <a href="https://github.com/Aryaman73/cyberchef/blob/master/CHANGELOG.md">here</a></li>
                             <li>&copy; Crown Copyright 2016-<%= htmlWebpackPlugin.options.compileYear %></li>
                             <li>Released under the Apache Licence, Version 2.0</li>
                             <li>SHA256 hash: DOWNLOAD_HASH_PLACEHOLDER</li>

@@ -4,20 +4,20 @@
         "@graph": [
             {
                 "@type": "Organization",
-                "url": "https://gchq.github.io/CyberChef/",
-                "logo": "https://gchq.github.io/CyberChef/images/cyberchef-128x128.png",
+                "url": "https://aryamans.me/cyberchef/",
+                "logo": "https://aryamans.me/cyberchef/images/cyberchef-128x128.png",
                 "sameAs": [
-                    "https://github.com/gchq/CyberChef",
+                    "https://github.com/Aryaman73/cyberchef",
                     "https://www.npmjs.com/package/cyberchef"
                 ]
             },
             {
                 "@type": "WebSite",
-                "url": "https://gchq.github.io/CyberChef/",
+                "url": "https://aryamans.me/cyberchef/",
                 "name": "CyberChef",
                 "potentialAction": {
                     "@type": "SearchAction",
-                    "target": "https://gchq.github.io/CyberChef/?op={operation_search_term}",
+                    "target": "https://aryamans.me/cyberchef/?op={operation_search_term}",
                     "query-input": "required name=operation_search_term"
                 }
             }
