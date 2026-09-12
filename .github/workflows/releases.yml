@@ -31,6 +31,12 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: Install
+        env:
+          # Fetch the chromedriver build that matches the runner image's own
+          # Chrome. The UI tests drive that Chrome (ChromeDriver resolves the
+          # system install, not anything we put on PATH), so a driver pinned to
+          # a fixed version breaks as soon as the image updates Chrome.
+          DETECT_CHROMEDRIVER_VERSION: true
         run: |
           npm ci
           npm run setheapsize
@@ -46,17 +52,9 @@ jobs:
       - name: Production Build
         run: npx grunt prod
 
-      - name: Setup Chrome
-        id: setup-chrome
-        if: success()
-        run: |
-          npx @puppeteer/browsers install chrome@148
-          echo chromedir=$(dirname $(find `pwd`/chrome/* -name chrome -print -quit)) >> $GITHUB_OUTPUT
-
       - name: UI Tests
         if: success()
         run: |
-          export PATH=${{ steps.setup-chrome.outputs.chromedir }}:$PATH
           sudo apt-get install xvfb
           xvfb-run --server-args="-screen 0 1200x800x24" npx grunt testui
 
